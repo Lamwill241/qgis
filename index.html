@@ -33,11 +33,13 @@
         <script src="data/Dobell_SA1_1.js"></script>
         <script src="data/Dobell_2.js"></script>
         <script src="data/CC_LGA_2023_3.js"></script>
-        <script src="data/SA1_PopulationDensity2021_4.js"></script>
-        <script src="data/SA1_MedianAge2021_5.js"></script>
-        <script src="data/SA1_ElectorDensity2023_6.js"></script>
-        <script src="data/SA1_Enrollment2023_7.js"></script>
-        <script src="data/2022BoothResults_8.js"></script>
+        <script src="data/sa1_new_elector_ratio_4.js"></script>
+        <script src="data/sa1_populationdensity2021_5.js"></script>
+        <script src="data/sa1_medianage2021_6.js"></script>
+        <script src="data/sa1_electorsperaddress2023_7.js"></script>
+        <script src="data/sa1_totalenrollment2023_8.js"></script>
+        <script src="data/2022Fed2PP_9.js"></script>
+        <script src="data/2022BoothResults_10.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -56,7 +58,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-33.44082808113438,151.27861480674977],[-33.20776641360474,151.62373090674737]]);
+        }).fitBounds([[-33.62617541180043,151.02934446356636],[-32.902887560353264,151.87730550613747]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -87,11 +89,13 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>SA1_CODE21</strong><br />' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">SA2_NAME21</th>\
-                        <td>' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREASQKM21'] !== null ? autolinker.link(feature.properties['AREASQKM21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -107,7 +111,7 @@
                 lineJoin: 'bevel',
                 weight: 1.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_Dobell_SA1_1');
@@ -115,7 +119,7 @@
         map.getPane('pane_Dobell_SA1_1').style['mix-blend-mode'] = 'normal';
         var layer_Dobell_SA1_1 = new L.geoJson(json_Dobell_SA1_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_Dobell_SA1_1',
             layerName: 'layer_Dobell_SA1_1',
             pane: 'pane_Dobell_SA1_1',
@@ -123,6 +127,7 @@
             style: style_Dobell_SA1_1_0,
         });
         bounds_group.addLayer(layer_Dobell_SA1_1);
+        map.addLayer(layer_Dobell_SA1_1);
         function pop_Dobell_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -150,7 +155,7 @@
                 lineJoin: 'bevel',
                 weight: 2.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_Dobell_2');
@@ -158,7 +163,7 @@
         map.getPane('pane_Dobell_2').style['mix-blend-mode'] = 'normal';
         var layer_Dobell_2 = new L.geoJson(json_Dobell_2, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_Dobell_2',
             layerName: 'layer_Dobell_2',
             pane: 'pane_Dobell_2',
@@ -166,6 +171,7 @@
             style: style_Dobell_2_0,
         });
         bounds_group.addLayer(layer_Dobell_2);
+        map.addLayer(layer_Dobell_2);
         function pop_CC_LGA_2023_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -214,7 +220,7 @@
                 lineJoin: 'bevel',
                 weight: 4.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_CC_LGA_2023_3');
@@ -222,7 +228,7 @@
         map.getPane('pane_CC_LGA_2023_3').style['mix-blend-mode'] = 'normal';
         var layer_CC_LGA_2023_3 = new L.geoJson(json_CC_LGA_2023_3, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_CC_LGA_2023_3',
             layerName: 'layer_CC_LGA_2023_3',
             pane: 'pane_CC_LGA_2023_3',
@@ -230,7 +236,8 @@
             style: style_CC_LGA_2023_3_0,
         });
         bounds_group.addLayer(layer_CC_LGA_2023_3);
-        function pop_SA1_PopulationDensity2021_4(feature, layer) {
+        map.addLayer(layer_CC_LGA_2023_3);
+        function pop_sa1_new_elector_ratio_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -241,191 +248,28 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Population</th>\
-                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Total Electors</th>\
+                        <td>' + (feature.properties['Total Electors'] !== null ? autolinker.link(feature.properties['Total Electors'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Median age</th>\
-                        <td>' + (feature.properties['Median age'] !== null ? autolinker.link(feature.properties['Median age'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">New Electors</th>\
+                        <td>' + (feature.properties['New Electors'] !== null ? autolinker.link(feature.properties['New Electors'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Density</th>\
-                        <td>' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Square km2</th>\
-                        <td>' + (feature.properties['Square km2'] !== null ? autolinker.link(feature.properties['Square km2'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">New Electors Percentage</th>\
+                        <td>' + (feature.properties['New Electors Percentage'] !== null ? autolinker.link(feature.properties['New Electors Percentage'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SA1_PopulationDensity2021_4_0(feature) {
-            if (feature.properties['Density'] >= 0.000000 && feature.properties['Density'] <= 40.816327 ) {
+        function style_sa1_new_elector_ratio_4_0(feature) {
+            if (feature.properties['New Electors Percentage'] >= 0.000000 && feature.properties['New Electors Percentage'] <= 10.000000 ) {
                 return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,255,255,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 40.816327 && feature.properties['Density'] <= 387.755102 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,213,213,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 387.755102 && feature.properties['Density'] <= 1469.387755 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,170,170,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 1469.387755 && feature.properties['Density'] <= 3250.500000 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,128,128,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 3250.500000 && feature.properties['Density'] <= 4334.000000 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,85,85,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 4334.000000 && feature.properties['Density'] <= 5417.500000 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(106,17,17,0.7)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Density'] >= 5417.500000 && feature.properties['Density'] <= 6501.000000 ) {
-                return {
-                pane: 'pane_SA1_PopulationDensity2021_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,0,0,0.7)',
-                interactive: true,
-            }
-            }
-        }
-        map.createPane('pane_SA1_PopulationDensity2021_4');
-        map.getPane('pane_SA1_PopulationDensity2021_4').style.zIndex = 404;
-        map.getPane('pane_SA1_PopulationDensity2021_4').style['mix-blend-mode'] = 'normal';
-        var layer_SA1_PopulationDensity2021_4 = new L.geoJson(json_SA1_PopulationDensity2021_4, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_SA1_PopulationDensity2021_4',
-            layerName: 'layer_SA1_PopulationDensity2021_4',
-            pane: 'pane_SA1_PopulationDensity2021_4',
-            onEachFeature: pop_SA1_PopulationDensity2021_4,
-            style: style_SA1_PopulationDensity2021_4_0,
-        });
-        bounds_group.addLayer(layer_SA1_PopulationDensity2021_4);
-        function pop_SA1_MedianAge2021_5(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Population</th>\
-                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Median age</th>\
-                        <td>' + (feature.properties['Median age'] !== null ? autolinker.link(feature.properties['Median age'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Density</th>\
-                        <td>' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Square km2</th>\
-                        <td>' + (feature.properties['Square km2'] !== null ? autolinker.link(feature.properties['Square km2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_SA1_MedianAge2021_5_0(feature) {
-            if (feature.properties['Median age'] >= 0.000000 && feature.properties['Median age'] <= 21.000000 ) {
-                return {
-                pane: 'pane_SA1_MedianAge2021_5',
+                pane: 'pane_sa1_new_elector_ratio_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
@@ -438,9 +282,9 @@
                 interactive: true,
             }
             }
-            if (feature.properties['Median age'] >= 21.000000 && feature.properties['Median age'] <= 42.000000 ) {
+            if (feature.properties['New Electors Percentage'] >= 10.000000 && feature.properties['New Electors Percentage'] <= 15.000000 ) {
                 return {
-                pane: 'pane_SA1_MedianAge2021_5',
+                pane: 'pane_sa1_new_elector_ratio_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
@@ -453,9 +297,9 @@
                 interactive: true,
             }
             }
-            if (feature.properties['Median age'] >= 42.000000 && feature.properties['Median age'] <= 63.000000 ) {
+            if (feature.properties['New Electors Percentage'] >= 15.000000 && feature.properties['New Electors Percentage'] <= 20.000000 ) {
                 return {
-                pane: 'pane_SA1_MedianAge2021_5',
+                pane: 'pane_sa1_new_elector_ratio_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
@@ -464,13 +308,13 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,85,85,0.75)',
+                fillColor: 'rgba(233,46,46,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['Median age'] >= 63.000000 && feature.properties['Median age'] <= 84.000000 ) {
+            if (feature.properties['New Electors Percentage'] >= 20.000000 && feature.properties['New Electors Percentage'] <= 35.060000 ) {
                 return {
-                pane: 'pane_SA1_MedianAge2021_5',
+                pane: 'pane_sa1_new_elector_ratio_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
@@ -479,25 +323,26 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,0,0,0.75)',
+                fillColor: 'rgba(121,5,5,0.75)',
                 interactive: true,
             }
             }
         }
-        map.createPane('pane_SA1_MedianAge2021_5');
-        map.getPane('pane_SA1_MedianAge2021_5').style.zIndex = 405;
-        map.getPane('pane_SA1_MedianAge2021_5').style['mix-blend-mode'] = 'normal';
-        var layer_SA1_MedianAge2021_5 = new L.geoJson(json_SA1_MedianAge2021_5, {
+        map.createPane('pane_sa1_new_elector_ratio_4');
+        map.getPane('pane_sa1_new_elector_ratio_4').style.zIndex = 404;
+        map.getPane('pane_sa1_new_elector_ratio_4').style['mix-blend-mode'] = 'normal';
+        var layer_sa1_new_elector_ratio_4 = new L.geoJson(json_sa1_new_elector_ratio_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SA1_MedianAge2021_5',
-            layerName: 'layer_SA1_MedianAge2021_5',
-            pane: 'pane_SA1_MedianAge2021_5',
-            onEachFeature: pop_SA1_MedianAge2021_5,
-            style: style_SA1_MedianAge2021_5_0,
+            dataVar: 'json_sa1_new_elector_ratio_4',
+            layerName: 'layer_sa1_new_elector_ratio_4',
+            pane: 'pane_sa1_new_elector_ratio_4',
+            onEachFeature: pop_sa1_new_elector_ratio_4,
+            style: style_sa1_new_elector_ratio_4_0,
         });
-        bounds_group.addLayer(layer_SA1_MedianAge2021_5);
-        function pop_SA1_ElectorDensity2023_6(feature, layer) {
+        bounds_group.addLayer(layer_sa1_new_elector_ratio_4);
+        map.addLayer(layer_sa1_new_elector_ratio_4);
+        function pop_sa1_populationdensity2021_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -508,13 +353,225 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Median age</th>\
+                        <td>' + (feature.properties['Median age'] !== null ? autolinker.link(feature.properties['Median age'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">People Per km2</th>\
+                        <td>' + (feature.properties['People Per km2'] !== null ? autolinker.link(feature.properties['People Per km2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">km2</th>\
+                        <td>' + (feature.properties['km2'] !== null ? autolinker.link(feature.properties['km2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_sa1_populationdensity2021_5_0(feature) {
+            if (feature.properties['People Per km2'] >= 0.000000 && feature.properties['People Per km2'] <= 1500.000000 ) {
+                return {
+                pane: 'pane_sa1_populationdensity2021_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['People Per km2'] >= 1500.000000 && feature.properties['People Per km2'] <= 2500.000000 ) {
+                return {
+                pane: 'pane_sa1_populationdensity2021_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(178,224,171,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['People Per km2'] >= 2500.000000 && feature.properties['People Per km2'] <= 3500.000000 ) {
+                return {
+                pane: 'pane_sa1_populationdensity2021_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(61,167,90,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['People Per km2'] >= 3500.000000 && feature.properties['People Per km2'] <= 6501.000000 ) {
+                return {
+                pane: 'pane_sa1_populationdensity2021_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(18,48,30,0.75)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_sa1_populationdensity2021_5');
+        map.getPane('pane_sa1_populationdensity2021_5').style.zIndex = 405;
+        map.getPane('pane_sa1_populationdensity2021_5').style['mix-blend-mode'] = 'normal';
+        var layer_sa1_populationdensity2021_5 = new L.geoJson(json_sa1_populationdensity2021_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_sa1_populationdensity2021_5',
+            layerName: 'layer_sa1_populationdensity2021_5',
+            pane: 'pane_sa1_populationdensity2021_5',
+            onEachFeature: pop_sa1_populationdensity2021_5,
+            style: style_sa1_populationdensity2021_5_0,
+        });
+        bounds_group.addLayer(layer_sa1_populationdensity2021_5);
+        map.addLayer(layer_sa1_populationdensity2021_5);
+        function pop_sa1_medianage2021_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SA1'] !== null ? autolinker.link(feature.properties['SA1'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Median Age</th>\
+                        <td>' + (feature.properties['Median Age'] !== null ? autolinker.link(feature.properties['Median Age'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">People Per km2</th>\
+                        <td>' + (feature.properties['People Per km2'] !== null ? autolinker.link(feature.properties['People Per km2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Square km2</th>\
+                        <td>' + (feature.properties['Square km2'] !== null ? autolinker.link(feature.properties['Square km2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_sa1_medianage2021_6_0(feature) {
+            if (feature.properties['Median Age'] >= 0.000000 && feature.properties['Median Age'] <= 23.000000 ) {
+                return {
+                pane: 'pane_sa1_medianage2021_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Median Age'] >= 23.000000 && feature.properties['Median Age'] <= 44.000000 ) {
+                return {
+                pane: 'pane_sa1_medianage2021_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,164,134,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Median Age'] >= 44.000000 && feature.properties['Median Age'] <= 65.000000 ) {
+                return {
+                pane: 'pane_sa1_medianage2021_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,55,42,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Median Age'] >= 65.000000 && feature.properties['Median Age'] <= 84.000000 ) {
+                return {
+                pane: 'pane_sa1_medianage2021_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,0,13,0.75)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_sa1_medianage2021_6');
+        map.getPane('pane_sa1_medianage2021_6').style.zIndex = 406;
+        map.getPane('pane_sa1_medianage2021_6').style['mix-blend-mode'] = 'normal';
+        var layer_sa1_medianage2021_6 = new L.geoJson(json_sa1_medianage2021_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_sa1_medianage2021_6',
+            layerName: 'layer_sa1_medianage2021_6',
+            pane: 'pane_sa1_medianage2021_6',
+            onEachFeature: pop_sa1_medianage2021_6,
+            style: style_sa1_medianage2021_6_0,
+        });
+        bounds_group.addLayer(layer_sa1_medianage2021_6);
+        map.addLayer(layer_sa1_medianage2021_6);
+        function pop_sa1_electorsperaddress2023_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Electors</th>\
@@ -525,67 +582,158 @@
                         <td>' + (feature.properties['Addresses'] !== null ? autolinker.link(feature.properties['Addresses'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ElectorDen'] !== null ? autolinker.link(feature.properties['ElectorDen'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Electors_Per_Address</th>\
+                        <td>' + (feature.properties['Electors_Per_Address'] !== null ? autolinker.link(feature.properties['Electors_Per_Address'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SA1_ElectorDensity2023_6_0(feature) {
-            if (feature.properties['ElectorDen'] >= 0.000000 && feature.properties['ElectorDen'] <= 1.860000 ) {
+        function style_sa1_electorsperaddress2023_7_0(feature) {
+            if (feature.properties['Electors_Per_Address'] >= 0.000000 && feature.properties['Electors_Per_Address'] <= 2.000000 ) {
                 return {
-                pane: 'pane_SA1_ElectorDensity2023_6',
+                pane: 'pane_sa1_electorsperaddress2023_7',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Electors_Per_Address'] >= 2.000000 && feature.properties['Electors_Per_Address'] <= 2.500000 ) {
+                return {
+                pane: 'pane_sa1_electorsperaddress2023_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,139,147,0.75)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Electors_Per_Address'] >= 2.500000 && feature.properties['Electors_Per_Address'] <= 2.860000 ) {
+                return {
+                pane: 'pane_sa1_electorsperaddress2023_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,9,0.75)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_sa1_electorsperaddress2023_7');
+        map.getPane('pane_sa1_electorsperaddress2023_7').style.zIndex = 407;
+        map.getPane('pane_sa1_electorsperaddress2023_7').style['mix-blend-mode'] = 'normal';
+        var layer_sa1_electorsperaddress2023_7 = new L.geoJson(json_sa1_electorsperaddress2023_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_sa1_electorsperaddress2023_7',
+            layerName: 'layer_sa1_electorsperaddress2023_7',
+            pane: 'pane_sa1_electorsperaddress2023_7',
+            onEachFeature: pop_sa1_electorsperaddress2023_7,
+            style: style_sa1_electorsperaddress2023_7_0,
+        });
+        bounds_group.addLayer(layer_sa1_electorsperaddress2023_7);
+        map.addLayer(layer_sa1_electorsperaddress2023_7);
+        function pop_sa1_totalenrollment2023_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Electors</th>\
+                        <td>' + (feature.properties['Electors'] !== null ? autolinker.link(feature.properties['Electors'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Addresses</th>\
+                        <td>' + (feature.properties['Addresses'] !== null ? autolinker.link(feature.properties['Addresses'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Electors_Per_Address</th>\
+                        <td>' + (feature.properties['Electors_Per_Address'] !== null ? autolinker.link(feature.properties['Electors_Per_Address'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_sa1_totalenrollment2023_8_0(feature) {
+            if (feature.properties['Electors'] >= 0.000000 && feature.properties['Electors'] <= 200.000000 ) {
+                return {
+                pane: 'pane_sa1_totalenrollment2023_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.75)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(247,251,255,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['ElectorDen'] >= 1.860000 && feature.properties['ElectorDen'] <= 2.040000 ) {
+            if (feature.properties['Electors'] >= 200.000000 && feature.properties['Electors'] <= 400.000000 ) {
                 return {
-                pane: 'pane_SA1_ElectorDensity2023_6',
+                pane: 'pane_sa1_totalenrollment2023_8',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(175,209,231,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['ElectorDen'] >= 2.040000 && feature.properties['ElectorDen'] <= 2.170000 ) {
+            if (feature.properties['Electors'] >= 400.000000 && feature.properties['Electors'] <= 600.000000 ) {
                 return {
-                pane: 'pane_SA1_ElectorDensity2023_6',
+                pane: 'pane_sa1_totalenrollment2023_8',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(62,142,196,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['ElectorDen'] >= 2.170000 && feature.properties['ElectorDen'] <= 2.860000 ) {
+            if (feature.properties['Electors'] >= 600.000000 && feature.properties['Electors'] <= 838.000000 ) {
                 return {
-                pane: 'pane_SA1_ElectorDensity2023_6',
+                pane: 'pane_sa1_totalenrollment2023_8',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(8,48,107,0.75)',
@@ -593,20 +741,21 @@
             }
             }
         }
-        map.createPane('pane_SA1_ElectorDensity2023_6');
-        map.getPane('pane_SA1_ElectorDensity2023_6').style.zIndex = 406;
-        map.getPane('pane_SA1_ElectorDensity2023_6').style['mix-blend-mode'] = 'normal';
-        var layer_SA1_ElectorDensity2023_6 = new L.geoJson(json_SA1_ElectorDensity2023_6, {
+        map.createPane('pane_sa1_totalenrollment2023_8');
+        map.getPane('pane_sa1_totalenrollment2023_8').style.zIndex = 408;
+        map.getPane('pane_sa1_totalenrollment2023_8').style['mix-blend-mode'] = 'normal';
+        var layer_sa1_totalenrollment2023_8 = new L.geoJson(json_sa1_totalenrollment2023_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SA1_ElectorDensity2023_6',
-            layerName: 'layer_SA1_ElectorDensity2023_6',
-            pane: 'pane_SA1_ElectorDensity2023_6',
-            onEachFeature: pop_SA1_ElectorDensity2023_6,
-            style: style_SA1_ElectorDensity2023_6_0,
+            dataVar: 'json_sa1_totalenrollment2023_8',
+            layerName: 'layer_sa1_totalenrollment2023_8',
+            pane: 'pane_sa1_totalenrollment2023_8',
+            onEachFeature: pop_sa1_totalenrollment2023_8,
+            style: style_sa1_totalenrollment2023_8_0,
         });
-        bounds_group.addLayer(layer_SA1_ElectorDensity2023_6);
-        function pop_SA1_Enrollment2023_7(feature, layer) {
+        bounds_group.addLayer(layer_sa1_totalenrollment2023_8);
+        map.addLayer(layer_sa1_totalenrollment2023_8);
+        function pop_2022Fed2PP_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -617,121 +766,97 @@
             });
             var popupContent = '<table>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['SA1_CODE21'] !== null ? autolinker.link(feature.properties['SA1_CODE21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['SA2_NAME21'] !== null ? autolinker.link(feature.properties['SA2_NAME21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SA1'] !== null ? autolinker.link(feature.properties['SA1'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['AREASQKM21'] !== null ? autolinker.link(feature.properties['AREASQKM21'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Electors</th>\
-                        <td>' + (feature.properties['Electors'] !== null ? autolinker.link(feature.properties['Electors'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['SA1 (2021)'] !== null ? autolinker.link(feature.properties['SA1 (2021)'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Addresses</th>\
-                        <td>' + (feature.properties['Addresses'] !== null ? autolinker.link(feature.properties['Addresses'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Suburb'] !== null ? autolinker.link(feature.properties['Suburb'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">ElectorDen</th>\
-                        <td>' + (feature.properties['ElectorDen'] !== null ? autolinker.link(feature.properties['ElectorDen'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Labor 2PP 2022</th>\
+                        <td>' + (feature.properties['Labor 2PP 2022'] !== null ? autolinker.link(feature.properties['Labor 2PP 2022'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Liberal 2PP 2022</th>\
+                        <td>' + (feature.properties['Liberal 2PP 2022'] !== null ? autolinker.link(feature.properties['Liberal 2PP 2022'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SA1_Enrollment2023_7_0(feature) {
-            if (feature.properties['Electors'] >= 0.000000 && feature.properties['Electors'] <= 1.000000 ) {
+        function style_2022Fed2PP_9_0(feature) {
+            if (feature.properties['Labor 2PP 2022'] >= 0.000000 && feature.properties['Labor 2PP 2022'] <= 49.990000 ) {
                 return {
-                pane: 'pane_SA1_Enrollment2023_7',
+                pane: 'pane_2022Fed2PP_9',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,251,255,0.75)',
+                fillColor: 'rgba(145,204,221,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['Electors'] >= 1.000000 && feature.properties['Electors'] <= 335.200000 ) {
+            if (feature.properties['Labor 2PP 2022'] >= 49.990000 && feature.properties['Labor 2PP 2022'] <= 59.990000 ) {
                 return {
-                pane: 'pane_SA1_Enrollment2023_7',
+                pane: 'pane_2022Fed2PP_9',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(153,181,207,0.75)',
+                fillColor: 'rgba(203,31,43,0.75)',
                 interactive: true,
             }
             }
-            if (feature.properties['Electors'] >= 335.200000 && feature.properties['Electors'] <= 502.800000 ) {
+            if (feature.properties['Labor 2PP 2022'] >= 59.990000 && feature.properties['Labor 2PP 2022'] <= 62.510000 ) {
                 return {
-                pane: 'pane_SA1_Enrollment2023_7',
+                pane: 'pane_2022Fed2PP_9',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(87,158,199,0.75)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Electors'] >= 502.800000 && feature.properties['Electors'] <= 670.400000 ) {
-                return {
-                pane: 'pane_SA1_Enrollment2023_7',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.75)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(41,121,185,0.75)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['Electors'] >= 670.400000 && feature.properties['Electors'] <= 838.000000 ) {
-                return {
-                pane: 'pane_SA1_Enrollment2023_7',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.75)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(8,48,107,0.75)',
+                fillColor: 'rgba(103,0,13,0.75)',
                 interactive: true,
             }
             }
         }
-        map.createPane('pane_SA1_Enrollment2023_7');
-        map.getPane('pane_SA1_Enrollment2023_7').style.zIndex = 407;
-        map.getPane('pane_SA1_Enrollment2023_7').style['mix-blend-mode'] = 'normal';
-        var layer_SA1_Enrollment2023_7 = new L.geoJson(json_SA1_Enrollment2023_7, {
+        map.createPane('pane_2022Fed2PP_9');
+        map.getPane('pane_2022Fed2PP_9').style.zIndex = 409;
+        map.getPane('pane_2022Fed2PP_9').style['mix-blend-mode'] = 'multiply';
+        var layer_2022Fed2PP_9 = new L.geoJson(json_2022Fed2PP_9, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SA1_Enrollment2023_7',
-            layerName: 'layer_SA1_Enrollment2023_7',
-            pane: 'pane_SA1_Enrollment2023_7',
-            onEachFeature: pop_SA1_Enrollment2023_7,
-            style: style_SA1_Enrollment2023_7_0,
+            dataVar: 'json_2022Fed2PP_9',
+            layerName: 'layer_2022Fed2PP_9',
+            pane: 'pane_2022Fed2PP_9',
+            onEachFeature: pop_2022Fed2PP_9,
+            style: style_2022Fed2PP_9_0,
         });
-        bounds_group.addLayer(layer_SA1_Enrollment2023_7);
-        function pop_2022BoothResults_8(feature, layer) {
+        bounds_group.addLayer(layer_2022Fed2PP_9);
+        map.addLayer(layer_2022Fed2PP_9);
+        function pop_2022BoothResults_10(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -795,10 +920,10 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_2022BoothResults_8_0(feature) {
+        function style_2022BoothResults_10_0(feature) {
             if (feature.properties['q2wHide_Votes'] >= 187.000000 && feature.properties['q2wHide_Votes'] <= 749.000000 ) {
                 return {
-                pane: 'pane_2022BoothResults_8',
+                pane: 'pane_2022BoothResults_10',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
@@ -814,7 +939,7 @@
             }
             if (feature.properties['q2wHide_Votes'] >= 749.000000 && feature.properties['q2wHide_Votes'] <= 1311.000000 ) {
                 return {
-                pane: 'pane_2022BoothResults_8',
+                pane: 'pane_2022BoothResults_10',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
@@ -830,7 +955,7 @@
             }
             if (feature.properties['q2wHide_Votes'] >= 1311.000000 && feature.properties['q2wHide_Votes'] <= 1873.000000 ) {
                 return {
-                pane: 'pane_2022BoothResults_8',
+                pane: 'pane_2022BoothResults_10',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
@@ -846,7 +971,7 @@
             }
             if (feature.properties['q2wHide_Votes'] >= 1873.000000 && feature.properties['q2wHide_Votes'] <= 2435.000000 ) {
                 return {
-                pane: 'pane_2022BoothResults_8',
+                pane: 'pane_2022BoothResults_10',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,0.75)',
@@ -861,25 +986,25 @@
             }
             }
         }
-        map.createPane('pane_2022BoothResults_8');
-        map.getPane('pane_2022BoothResults_8').style.zIndex = 408;
-        map.getPane('pane_2022BoothResults_8').style['mix-blend-mode'] = 'normal';
-        var layer_2022BoothResults_8 = new L.geoJson(json_2022BoothResults_8, {
+        map.createPane('pane_2022BoothResults_10');
+        map.getPane('pane_2022BoothResults_10').style.zIndex = 410;
+        map.getPane('pane_2022BoothResults_10').style['mix-blend-mode'] = 'normal';
+        var layer_2022BoothResults_10 = new L.geoJson(json_2022BoothResults_10, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_2022BoothResults_8',
-            layerName: 'layer_2022BoothResults_8',
-            pane: 'pane_2022BoothResults_8',
-            onEachFeature: pop_2022BoothResults_8,
+            dataVar: 'json_2022BoothResults_10',
+            layerName: 'layer_2022BoothResults_10',
+            pane: 'pane_2022BoothResults_10',
+            onEachFeature: pop_2022BoothResults_10,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_2022BoothResults_8_0(feature));
+                return L.circleMarker(latlng, style_2022BoothResults_10_0(feature));
             },
         });
-        bounds_group.addLayer(layer_2022BoothResults_8);
+        bounds_group.addLayer(layer_2022BoothResults_10);
             var title = new L.Control();
             title.onAdd = function (map) {
                 this._div = L.DomUtil.create('div', 'info');
@@ -891,7 +1016,7 @@
             };
             title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'2022 Booth Results<br /><table><tr><td style="text-align: center;"><img src="legend/2022BoothResults_8_1877490.png" /></td><td>187 - 749</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_8_74913111.png" /></td><td>749 - 1311</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_8_131118732.png" /></td><td>1311 - 1873</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_8_187324353.png" /></td><td>1873 - 2435</td></tr></table>': layer_2022BoothResults_8,'SA1_Enrollment2023<br /><table><tr><td style="text-align: center;"><img src="legend/SA1_Enrollment2023_7_010.png" /></td><td>0 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_Enrollment2023_7_13351.png" /></td><td>1 - 335</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_Enrollment2023_7_3355032.png" /></td><td>335 - 503</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_Enrollment2023_7_5036703.png" /></td><td>503 - 670</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_Enrollment2023_7_6708384.png" /></td><td>670 - 838</td></tr></table>': layer_SA1_Enrollment2023_7,'SA1_ElectorDensity2023<br /><table><tr><td style="text-align: center;"><img src="legend/SA1_ElectorDensity2023_6_01860.png" /></td><td>0 - 1.86</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_ElectorDensity2023_6_1862041.png" /></td><td>1.86 - 2.04</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_ElectorDensity2023_6_2042172.png" /></td><td>2.04 - 2.17</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_ElectorDensity2023_6_2172863.png" /></td><td>2.17 - 2.86</td></tr></table>': layer_SA1_ElectorDensity2023_6,'SA1_MedianAge2021<br /><table><tr><td style="text-align: center;"><img src="legend/SA1_MedianAge2021_5_0210.png" /></td><td>0 - 21</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_MedianAge2021_5_21421.png" /></td><td>21 - 42</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_MedianAge2021_5_42632.png" /></td><td>42 - 63</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_MedianAge2021_5_63843.png" /></td><td>63 - 84</td></tr></table>': layer_SA1_MedianAge2021_5,'SA1_PopulationDensity2021<br /><table><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_0410.png" /></td><td>0 - 41</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_413881.png" /></td><td>41 - 388</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_38814692.png" /></td><td>388 - 1469</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_146932513.png" /></td><td>1469 - 3251</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_325143344.png" /></td><td>3251 - 4334</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_433454185.png" /></td><td>4334 - 5418</td></tr><tr><td style="text-align: center;"><img src="legend/SA1_PopulationDensity2021_4_541865016.png" /></td><td>5418 - 6501</td></tr></table>': layer_SA1_PopulationDensity2021_4,'<img src="legend/CC_LGA_2023_3.png" /> CC_LGA_2023': layer_CC_LGA_2023_3,'<img src="legend/Dobell_2.png" /> Dobell': layer_Dobell_2,'<img src="legend/Dobell_SA1_1.png" /> Dobell_SA1': layer_Dobell_SA1_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'2022 Booth Results<br /><table><tr><td style="text-align: center;"><img src="legend/2022BoothResults_10_1877490.png" /></td><td>187 - 749</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_10_74913111.png" /></td><td>749 - 1311</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_10_131118732.png" /></td><td>1311 - 1873</td></tr><tr><td style="text-align: center;"><img src="legend/2022BoothResults_10_187324353.png" /></td><td>1873 - 2435</td></tr></table>': layer_2022BoothResults_10,'2022 Fed 2PP<br /><table><tr><td style="text-align: center;"><img src="legend/2022Fed2PP_9_0490.png" /></td><td>0 - 49%</td></tr><tr><td style="text-align: center;"><img src="legend/2022Fed2PP_9_50591.png" /></td><td>50% - 59%</td></tr><tr><td style="text-align: center;"><img src="legend/2022Fed2PP_9_606252.png" /></td><td>60% - 62.5%</td></tr></table>': layer_2022Fed2PP_9,'sa1_totalenrollment2023<br /><table><tr><td style="text-align: center;"><img src="legend/sa1_totalenrollment2023_8_02000.png" /></td><td>0 - 200</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_totalenrollment2023_8_2004001.png" /></td><td>200 - 400</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_totalenrollment2023_8_4006002.png" /></td><td>400 - 600</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_totalenrollment2023_8_6008383.png" /></td><td>600 - 838</td></tr></table>': layer_sa1_totalenrollment2023_8,'sa1_electorsperaddress2023<br /><table><tr><td style="text-align: center;"><img src="legend/sa1_electorsperaddress2023_7_020.png" /></td><td>0 - 2</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_electorsperaddress2023_7_2251.png" /></td><td>2 - 2.5</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_electorsperaddress2023_7_2532.png" /></td><td>2.5 - 3</td></tr></table>': layer_sa1_electorsperaddress2023_7,'sa1_medianage2021<br /><table><tr><td style="text-align: center;"><img src="legend/sa1_medianage2021_6_0230.png" /></td><td>0 - 23</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_medianage2021_6_23441.png" /></td><td>23 - 44</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_medianage2021_6_44652.png" /></td><td>44 - 65</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_medianage2021_6_65863.png" /></td><td>65 - 86</td></tr></table>': layer_sa1_medianage2021_6,'sa1_populationdensity2021<br /><table><tr><td style="text-align: center;"><img src="legend/sa1_populationdensity2021_5_015000.png" /></td><td>0 - 1500</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_populationdensity2021_5_150025001.png" /></td><td>1500 - 2500</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_populationdensity2021_5_250035002.png" /></td><td>2500 - 3500</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_populationdensity2021_5_350065013.png" /></td><td>3500 - 6501</td></tr></table>': layer_sa1_populationdensity2021_5,'sa1_new_elector_ratio<br /><table><tr><td style="text-align: center;"><img src="legend/sa1_new_elector_ratio_4_0100.png" /></td><td>0 - 10%</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_new_elector_ratio_4_10151.png" /></td><td>10% - 15%</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_new_elector_ratio_4_15202.png" /></td><td>15% - 20%</td></tr><tr><td style="text-align: center;"><img src="legend/sa1_new_elector_ratio_4_20353.png" /></td><td>20% - 35%</td></tr></table>': layer_sa1_new_elector_ratio_4,'<img src="legend/CC_LGA_2023_3.png" /> CC_LGA_2023': layer_CC_LGA_2023_3,'<img src="legend/Dobell_2.png" /> Dobell': layer_Dobell_2,'<img src="legend/Dobell_SA1_1.png" /> Dobell_SA1': layer_Dobell_SA1_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
